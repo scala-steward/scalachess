@@ -134,15 +134,15 @@ object Parser {
         }
       }
 
+    private val glyphsRE = Glyph.PositionAssessment.all
+      .map(_.symbol)
+      .sortBy(-_.length)
+      .map(Regex.quote)
+      .mkString("|")
+      .r
+
     def nag: Parser[String] =
       as("nag") {
-        val glyphsRE = Glyph.PositionAssessment.all
-          .map(_.symbol)
-          .sortBy(-_.length)
-          .map(Regex.quote(_))
-          .mkString("|")
-          .r
-
         """\$\d+""".r | glyphsRE
       }
 
