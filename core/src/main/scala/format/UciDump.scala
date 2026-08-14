@@ -31,10 +31,10 @@ object UciDump:
 
   // Keys to highlight to show the last move made on the board.
   // Does not render as UCI.
-  def lastMove(uci: Uci, variant: Variant): String = uci match
+  def lastMove(uci: Uci, pos: Position): String = uci match
     case d: Uci.Drop => d.square.key * 2
     case m: Uci.Move =>
-      if variant == Chess960 then m.keys
+      if pos.variant == Chess960 || pos.isOccupied(m.dest) then m.keys
       else
         m.keys match
           case "e1h1" => "e1g1"
