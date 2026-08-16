@@ -34,11 +34,11 @@ object UciDump:
   def lastMove(uci: Uci, pos: Position): String = uci match
     case d: Uci.Drop => d.square.key * 2
     case m: Uci.Move =>
-      if pos.variant == Chess960 || pos.isOccupied(m.dest) then m.keys
+      if pos.variant == Chess960 then m.keys
       else
         m.keys match
-          case "e1h1" => "e1g1"
-          case "e8h8" => "e8g8"
-          case "e1a1" => "e1c1"
-          case "e8a8" => "e8c8"
+          case "e1h1" if pos.isOccupied(Square.G1) => "e1g1"
+          case "e8h8" if pos.isOccupied(Square.G8) => "e8g8"
+          case "e1a1" if pos.isOccupied(Square.C1) => "e1c1"
+          case "e8a8" if pos.isOccupied(Square.C8) => "e8c8"
           case k => k
