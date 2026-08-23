@@ -85,7 +85,7 @@ case class Position(board: Board, history: History, variant: Variant, color: Col
 
   inline def autoDraw: Boolean = variant.autoDraw(this) || variant.specialDraw(this)
 
-  inline def opponentHasInsufficientMaterial: Boolean =
+  def opponentHasInsufficientMaterial: Boolean =
     variant.opponentHasInsufficientMaterial(this) ||
       (
         legalMoves.nonEmpty &&
