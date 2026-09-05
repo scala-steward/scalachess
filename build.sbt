@@ -71,7 +71,7 @@ lazy val testKit = project
   .settings(
     name := "scalachess-test-kit",
     libraryDependencies ++= List(
-      "org.scalacheck" %% "scalacheck" % "1.19.0",
+      "org.scalacheck" %% "scalacheck" % "1.20.0",
       "org.typelevel" %% "literally" % "1.2.0",
       "org.scalameta" %% "munit" % "1.3.6" % Test,
       "org.scalameta" %% "munit-scalacheck" % "1.3.0" % Test,
